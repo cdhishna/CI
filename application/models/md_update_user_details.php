@@ -29,10 +29,17 @@ Class update_user_details extends CI_Model
 		'home_town' => $array[7],
 		'date_of_join' => $array[8],
 		'password' => $array[9],
-		'verify' => $array[10]
+		'verify' => $array[10],
+		'contact_no' => $array[11],
+  		'lang_known'=> $array[12],
+ 		'profile_image'=> $array[13],
+  		'communication_address'=> $array[14],
+  		'Membership'=> $array[15],
+  		'other_details'=> $array[16]
+
 		);
 		
-		$query = $this->db->query("UPDATE user_detail SET user_name='$array[1]',email='$array[2]',display_name='$array[3]',age='$array[4]',gender='$array[5]',date_of_birth='$array[6]',home_town='$array[7]',date_of_join='$array[8]',password='$array[9]' WHERE id='$userid'");
+		$query = $this->db->query("UPDATE user_detail SET user_name='$array[1]',email='$array[2]',display_name='$array[3]',age='$array[4]',gender='$array[5]',date_of_birth='$array[6]',home_town='$array[7]',date_of_join='$array[8]',password='$array[9]',verify='$array[10]',contact_no='$array[11]',lang_known='$array[12]',profile_image='$array[13]',communication_address='$array[14]',Membership='$array[15]',other_details=s'$array[16]' WHERE id='$userid'");
 
 		
 

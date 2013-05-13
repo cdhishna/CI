@@ -25,10 +25,14 @@ Class update_user_details extends CI_Model
 		'degree_type' => $array[3],
 		'stream_name' => $array[4],
 		'current_year' => $array[5],
-		'expected_passout_year' => $array[6]
+		'expected_passout_year' => $array[6],
+		'highest_qualification'=> $array[7],
+		'class_12_10_detail'=> $array[8],
+		'technical_skills'=> $array[9],
+		'projects'=> $array[10]
 		);
 		
-		$query = $this->db->query("UPDATE user_academics SET school_attended='$array[1]',college_name='$array[2]',degree_type='$array[3]',stream_name='$array[4]',current_year='$array[5]',expected_passout_year='$array[6]' WHERE id='$userid'");
+		$query = $this->db->query("UPDATE user_academics SET school_attended='$array[1]',college_name='$array[2]',degree_type='$array[3]',stream_name='$array[4]',current_year='$array[5]',expected_passout_year='$array[6]',highest_qualification='$array[7]',class_12_10_detail='$array[8]',technical_skills=' $array[9]',projects='$array[10]' WHERE id='$userid'");
 
 		
 
