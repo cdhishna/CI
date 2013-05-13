@@ -48,20 +48,49 @@ class Check_User_Authentication extends CI_Model {
 	}
 
 	public function load_percent_profile_complete($userid){
-		// I think we can find the percentage of profile completed by counting the non-null fields.
-                // I am not sure about it.
+		// Returns the percentage of the user's profile 
+       
 		$this->load->database();
                 $array   = array('id' => $userid);
                 $query = $this->db->get_where('user_detail', $array);
-		$row = $query->result_array()	
-		$not_null = 0;
-   		$len = sizeof($row);
-		for($i=0; $i<$len; $i++){
-			if($row[$i] != NULL)
-				$not_null++;
-		}
-		
-		$percent = ($not_null/11)*100;
+		$row = $query->result_array();
+		$percent = 0;
+		if($row['user_name'])
+			$percent+=5;
+		if($row['email'] !=null and $row['verify'] == 1)
+			$percent+=5;
+		if($row['contact_no'])
+                        $percent+=5;
+		if($row['home_town'])
+                        $percent+=5;
+		if($row['gender'])
+                        $percent+=5;
+		if($row['profile_image'])
+                        $percent+=5;
+		if($row['date_of_birth'])
+                        $percent+=5;
+		if($row['communication_address'])
+                        $percent+=5;
+		if($row['membership'])
+                        $percent+=10;
+		if($row['other_details'])
+                        $percent+=5;
+		if($row['lang_known'])
+                        $percent+=5;
+
+
+		$query = $this->db->get_where('user_academics', $array);
+		$row = $query->result_array();
+
+		if($row['highest_qualification'])
+                        $percent+=10;
+		if($row['class_12_10_detail'])
+                        $percent+=20;
+		if($row['technical_skills'])
+                        $percent+=5;
+		if($row['projects'])
+                        $percent+=5;
+
 		return $percent;
 
 	}
