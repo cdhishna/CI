@@ -13,14 +13,13 @@ class Check_User_Authentication extends CI_Model {
                 // the function returns the id of user otherwise -1.
 
 		$this->load->database();
-		$array = array('user_name' => $username, 'password' => $password);
-		$query = $this->db->get_where('user_detail', $array);
+		$query = $this->db->query("select * from user_detail where user_name = '".$username."', password = '".$password."'");
 		$row = $query->result();
 			$id = $row->id;
 		if (!$id)
 			return -1;
 		$array = array('id' => $id);
-		$query = $this->db->get_where('user_academics', $array);
+		$query = $this->db->query("select * from user_academics where id = '".$id."'");
  		$row = $query->result();
 			$college = $row->college_name;
 		if ($college != $college_name)
@@ -34,8 +33,7 @@ class Check_User_Authentication extends CI_Model {
                 // Check whether the user has verified his account or not.
 
 		$this->load->database();
-		$array = array('id' => $userid);
-		$query = $this->db->get_where('user_detail', $array);
+		$query = $this->db->query("select * from user_detail where id = '".$userid."'");
 
 		$row = $query->result();
 		$status = $row->verify;
@@ -52,7 +50,7 @@ class Check_User_Authentication extends CI_Model {
        
 		$this->load->database();
                 $array   = array('id' => $userid);
-                $query = $this->db->get_where('user_detail', $array);
+                $query = $this->db->query("select * from user_detail where id = '".$userid."'");
 		$row = $query->result_array();
 		$percent = 0;
 		if($row['user_name'])
@@ -79,7 +77,7 @@ class Check_User_Authentication extends CI_Model {
                         $percent+=5;
 
 
-		$query = $this->db->get_where('user_academics', $array);
+		$query = $this->db->query("select * from user_academics where id = '".$userid."'");
 		$row = $query->result_array();
 
 		if($row['highest_qualification'])
@@ -100,8 +98,7 @@ class Check_User_Authentication extends CI_Model {
                 // If it is equal, it will return 1 otherwise -1.
 
 		$this->load->database();
-		$array	 = array('id' => $userid);
-		$query = $this->db->get_where('user_detail', $array);
+		$query = $this->db->query("select * from user_detail where id = '".$userid."'");
 
 		$row = $query->result();
 		$birthday = $row->date_of_birth;
